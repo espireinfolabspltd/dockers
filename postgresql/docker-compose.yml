@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  postgresql:
+    container_name: portainer
+    image: 'portainer/portainer-ce:latest'
+    restart: always
+    privileged: true
+    ports:
+      - '9443:9443'
+    volumes:
+      - ./portainer/data:/data:Z
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - portainer
+
+networks:
+  portainer:
+    name: portainer
+    external: true
