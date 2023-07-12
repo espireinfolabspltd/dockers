@@ -16,6 +16,21 @@ services:
     networks:
       - portainer
 
+  pgadmin:
+    container_name: pgadmin4
+    hostname: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${ADMIN_EMAIL)
+      - PGADMIN_DEFAULT_PASSWORD=${ADMIN_PASSWORD)
+    volumes:
+      - ${DATA}/erds:/erds
+    ports:
+      - "5050:5050"
+    networks:
+      - portainer
+
 networks:
   portainer:
     name: portainer
