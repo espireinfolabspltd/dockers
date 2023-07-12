@@ -23,7 +23,7 @@ services:
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: deebendu.kumar@espire.com
-      PGADMIN_DEFAULT_PASSWORD: Reset@123
+      PGADMIN_DEFAULT_PASSWORD: PGAdmin
     volumes:
       - ${DATA}/erds:/erds
     ports:
