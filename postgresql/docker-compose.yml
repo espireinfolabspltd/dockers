@@ -22,8 +22,8 @@ services:
     image: dpage/pgadmin4
     restart: always
     environment:
-      - PGADMIN_DEFAULT_EMAIL=${ADMIN_EMAIL)
-      - PGADMIN_DEFAULT_PASSWORD=${ADMIN_PASSWORD)
+      PGADMIN_DEFAULT_EMAIL: ${ADMIN_EMAIL)
+      PGADMIN_DEFAULT_PASSWORD: ${ADMIN_PASSWORD)
     volumes:
       - ${DATA}/erds:/erds
     ports:
