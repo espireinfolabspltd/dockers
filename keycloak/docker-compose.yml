@@ -3,7 +3,7 @@ version: '3'
 services:
 
   mariadb:
-    image: library/mariadb:10.4
+    image: library/mariadb:10
     container_name: mariadb
     volumes:
       - ${DATA}/mysql:/var/lib/mysql
