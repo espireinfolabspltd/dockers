@@ -1,0 +1,42 @@
+version: '3'
+#all port number should be exposed appending 9
+services:
+
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    volumes:
+      - ${DATA}/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: KeycloakDB
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "--silent" ]
+    networks:
+      - portainer
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:legacy
+    container_name: keycloak
+    ports:
+      - "6080:8080"
+    environment:
+      DB_VENDOR: mariadb
+      DB_ADDR: mariadb
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: KeycloakDB
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: Pa55w0rd
+      JGROUPS_DISCOVERY_PROTOCOL: JDBC_PING
+    depends_on:
+      - mariadb
+    networks:
+      - portainer
+
+networks:
+  portainer:
+    name: portainer
+    external: true
