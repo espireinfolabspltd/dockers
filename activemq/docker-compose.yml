@@ -9,6 +9,8 @@ services:
     ports:
       - "8161:8161"
       - "61616:61616"
+    volumes:
+      - ${DATA}/data:/opt/apache-activemq-5.15.12/data
     networks:
       - portainer
 
