@@ -20,8 +20,11 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:legacy
     container_name: keycloak
+    volumes:
+      #- ${DATA}/keycloak:/opt/jboss/keycloak
+      - ./certs:/opt/jboss/keycloak/certs
     ports:
-      - "6080:8080"
+      - "6443:8443"
     environment:
       DB_VENDOR: mariadb
       DB_ADDR: mariadb
@@ -31,6 +34,8 @@ services:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: Pa55w0rd
       JGROUPS_DISCOVERY_PROTOCOL: JDBC_PING
+      KC_HTTPS_CERTIFICATE_FILE: /opt/jboss/keycloak/certs/eunica.crt
+      KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/jboss/keycloak/certs/eunica.key
     depends_on:
       - mariadb
     networks:
