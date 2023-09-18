@@ -1,0 +1,32 @@
+version: '3'
+#all port number should be exposed appending 9
+services:
+
+  discovery:
+    image: deebendu/apim-discovery
+    container_name: apim-discovery
+    ports:
+      - "8761:8761"
+    networks:
+      - portainer
+
+  apim:
+    image: deebendu/apim
+    container_name: apim
+    ports:
+      - "8765:8765"
+    networks:
+      - portainer
+
+  apim-admin:
+    image: deebendu/apim-admin
+    container_name: apim-admin
+    ports:
+      - "8022:8022"
+    networks:
+      - portainer
+
+networks:
+  portainer:
+    name: portainer
+    external: true

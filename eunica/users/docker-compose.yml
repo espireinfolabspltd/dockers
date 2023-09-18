@@ -1,0 +1,19 @@
+version: '3'
+#all port number should be exposed appending 9
+services:
+
+  eunicausers:
+    image: espiredeebendu/eunica-users:latest
+    container_name: eunicausers
+    restart: on-failure
+    ports:
+      - "8443:8443"
+    volumes:
+      - ${DATA}/users:/opt/service
+    networks:
+      - portainer
+
+networks:
+  portainer:
+    name: portainer
+    external: true

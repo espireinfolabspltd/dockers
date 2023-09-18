@@ -1,0 +1,17 @@
+version: '3'
+#all port number should be exposed appending 9
+services:
+
+  wso2am:
+    image: wso2/wso2am
+    container_name: wso2am
+    ports:
+      - "7443:9443"
+      - "7243:8243"
+    networks:
+      - portainer
+
+networks:
+  portainer:
+    name: portainer
+    external: true
