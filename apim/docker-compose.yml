@@ -34,7 +34,7 @@ services:
       timeout: 60s
       retries: 5
   api-manager:
-    build: deebendu/wso2apim:4.2.0
+    image: deebendu/wso2apim:4.2.0
     healthcheck:
       test: [ "CMD", "nc", "-z","localhost", "9443" ]
       interval: 10s
