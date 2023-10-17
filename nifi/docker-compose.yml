@@ -8,6 +8,7 @@ services:
   registry:
     container_name: registry
     image: apache/nifi-registry:1.15.0
+    user: root
     ports:
       - 18080:18080
     cpus: 1
