@@ -13,6 +13,11 @@ services:
     cpus: 1
     mem_limit: 1G
     mem_reservation: 1G
+    environment:
+      - LOG_LEVEL=INFO
+      - NIFI_REGISTRY_DB_DIR=/opt/nifi-registry/nifi-registry-current/database
+      - NIFI_REGISTRY_FLOW_PROVIDER=file
+      - NIFI_REGISTRY_FLOW_STORAGE_DIR=/opt/nifi-registry/nifi-registry-current/flow_storage
     volumes:
       - /var/lib/nifi/registry/database:/opt/nifi-registry/nifi-registry-current/database
       - /var/lib/nifi/flow_storage/database:/opt/nifi-registry/nifi-registry-current/flow_storage
