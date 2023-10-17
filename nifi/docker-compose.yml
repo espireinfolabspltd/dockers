@@ -14,7 +14,8 @@ services:
     mem_limit: 1G
     mem_reservation: 1G
     volumes:
-      - /var/lib/nifi/registry:/opt/nifi-registry/nifi-registry-current/
+      - /var/lib/nifi/registry/database:/opt/nifi-registry/nifi-registry-current/database
+      - /var/lib/nifi/flow_storage/database:/opt/nifi-registry/nifi-registry-current/flow_storage
     networks:
       - portainer
 
