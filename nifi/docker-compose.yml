@@ -13,6 +13,8 @@ services:
     cpus: 1
     mem_limit: 1G
     mem_reservation: 1G
+    volumes:
+      - /var/lib/nifi/registry:/opt/nifi-registry/nifi-registry-current/
     networks:
       - portainer
 
@@ -48,6 +50,8 @@ services:
       SINGLE_USER_CREDENTIALS_USERNAME: admin
       SINGLE_USER_CREDENTIALS_PASSWORD: 9Ptk5ADcjBmdTn
       NIFI_SENSITIVE_PROPS_KEY: 9Ptk5ADcjBmdTn
+      NIFI_JVM_HEAP_INIT: 4g
+      NIFI_JVM_HEAP_MAX: 6g
       ########## JVM ##########
       # -Xms
       #   The initial JVM heap size.
