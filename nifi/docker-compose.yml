@@ -33,6 +33,7 @@ services:
     mem_limit: 8G
     mem_reservation: 8G
     volumes:
+      - /nifi:/nifi
       - ./certs:/opt/certs
       # mkdir /var/lib/nifi && chown -R 1000:1000 /var/lib/nifi
       - /var/lib/nifi/database_repository:/opt/nifi/nifi-current/database_repository
