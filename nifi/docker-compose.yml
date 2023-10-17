@@ -6,18 +6,21 @@
 version: '3'
 services:
   nifi:
-    image: apache/nifi:1.10.0
+    image: apache/nifi:1.15.0
     container_name: nifi
     restart: unless-stopped
     ports:
       # HTTP
-      - 10080:8080/tcp
+      - 18443:8443
       # Remote Input Socket
-      - 10000:10000/tcp
+      #- 10000:10000/tcp
       # JVM Debugger
-      - 10001:8000/tcp
+      #- 10001:8000/tcp
       # Cluster Node Protocol
       #- 11443:11443/tcp
+    cpus: 2
+    mem_limit: 8G
+    mem_reservation: 8G
     volumes:
       - ./certs:/opt/certs
       # mkdir /var/lib/nifi && chown -R 1000:1000 /var/lib/nifi
@@ -30,6 +33,9 @@ services:
       # A custom nifi.properties file can be mounted as follows.
       #- /var/lib/nifi/conf/nifi.properties:/opt/nifi/nifi-current/conf/nifi.properties:ro
     environment:
+      - SINGLE_USER_CREDENTIALS_USERNAME=admin
+      - SINGLE_USER_CREDENTIALS_PASSWORD=9Ptk5ADcjBmdTn
+      - NIFI_SENSITIVE_PROPS_KEY=9Ptk5ADcjBmdTn
       ########## JVM ##########
       # -Xms
       #   The initial JVM heap size.
@@ -43,10 +49,10 @@ services:
 
       ########## Web ##########
       # nifi.web.http.host
-      NIFI_WEB_HTTP_HOST: '0.0.0.0'
+      # NIFI_WEB_HTTP_HOST: '0.0.0.0'
       # nifi.web.http.port
       #   HTTP Port
-      NIFI_WEB_HTTP_PORT: 8080
+      # NIFI_WEB_HTTP_PORT: 8080
 
       ########## LDAP ##########
       # Url - Space-separated list of URLs of the LDAP servers (i.e. ldap://<hostname>:<port>).
