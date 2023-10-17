@@ -33,9 +33,9 @@ services:
       # A custom nifi.properties file can be mounted as follows.
       #- /var/lib/nifi/conf/nifi.properties:/opt/nifi/nifi-current/conf/nifi.properties:ro
     environment:
-      - SINGLE_USER_CREDENTIALS_USERNAME=admin
-      - SINGLE_USER_CREDENTIALS_PASSWORD=9Ptk5ADcjBmdTn
-      - NIFI_SENSITIVE_PROPS_KEY=9Ptk5ADcjBmdTn
+      SINGLE_USER_CREDENTIALS_USERNAME: admin
+      SINGLE_USER_CREDENTIALS_PASSWORD: 9Ptk5ADcjBmdTn
+      NIFI_SENSITIVE_PROPS_KEY: 9Ptk5ADcjBmdTn
       ########## JVM ##########
       # -Xms
       #   The initial JVM heap size.
@@ -49,10 +49,10 @@ services:
 
       ########## Web ##########
       # nifi.web.http.host
-      # NIFI_WEB_HTTP_HOST: '0.0.0.0'
+      NIFI_WEB_HTTPS_HOST: '0.0.0.0'
       # nifi.web.http.port
       #   HTTP Port
-      # NIFI_WEB_HTTP_PORT: 8080
+      NIFI_WEB_HTTPS_PORT: 8443
 
       ########## LDAP ##########
       # Url - Space-separated list of URLs of the LDAP servers (i.e. ldap://<hostname>:<port>).
