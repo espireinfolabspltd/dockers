@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
     ports:
       # HTTP
-      - 18443:8443
+      - 18443:8080
       # Remote Input Socket
       #- 10000:10000/tcp
       # JVM Debugger
@@ -49,10 +49,10 @@ services:
 
       ########## Web ##########
       # nifi.web.http.host
-      NIFI_WEB_HTTPS_HOST: '0.0.0.0'
+      #NIFI_WEB_HTTPS_HOST: '0.0.0.0'
       # nifi.web.http.port
       #   HTTP Port
-      NIFI_WEB_HTTPS_PORT: 8443
+      NIFI_WEB_HTTP_PORT: 8080
 
       ########## LDAP ##########
       # Url - Space-separated list of URLs of the LDAP servers (i.e. ldap://<hostname>:<port>).
