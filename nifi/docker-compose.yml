@@ -8,6 +8,7 @@ services:
   registry:
     container_name: registry
     image: apache/nifi-registry:1.15.0
+    #given permission to run as root to access /opt/nifi-registry/nifi-registry-current/flow_storage
     user: root
     ports:
       - 18080:18080
