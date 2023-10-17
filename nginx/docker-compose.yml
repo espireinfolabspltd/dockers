@@ -4,20 +4,19 @@
 # Copyright 2023 by Espire Infolabs
 #------------------------------------------------------------------------------
 version: '3'
-#all port number should be exposed appending 9
 services:
-
-  eunicausers:
-    image: espiredeebendu/eunica-users:latest
-    container_name: eunicausers
-    restart: on-failure
+  nginx:
+    image: nginx:1.17.3
+    container_name: nginx
+    restart: unless-stopped
+    hostname: nginx
+    network_mode: bridge
     ports:
-      - "8443:8443"
+      - 80:80/tcp
+      - 443:443/tcp
     volumes:
-      - ${DATA}/users:/opt/service
-    networks:
-      - portainer
-
+      - /etc/nginx:/etc/nginx
+    #environment:
 networks:
   portainer:
     name: portainer

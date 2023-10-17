@@ -4,20 +4,17 @@
 # Copyright 2023 by Espire Infolabs
 #------------------------------------------------------------------------------
 version: '3'
-#all port number should be exposed appending 9
 services:
-
-  eunicausers:
-    image: espiredeebendu/eunica-users:latest
-    container_name: eunicausers
-    restart: on-failure
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: redis-commander
+    restart: unless-stopped
+    hostname: redis-commander
+    network_mode: bridge
     ports:
-      - "8443:8443"
-    volumes:
-      - ${DATA}/users:/opt/service
-    networks:
-      - portainer
-
+      - 8081:8081/tcp
+    environment:
+      REDIS_HOSTS: redis1:192.0.2.1:6379:0:changeme
 networks:
   portainer:
     name: portainer

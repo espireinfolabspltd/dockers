@@ -4,19 +4,18 @@
 # Copyright 2023 by Espire Infolabs
 #------------------------------------------------------------------------------
 version: '3'
-#all port number should be exposed appending 9
 services:
-
-  eunicausers:
-    image: espiredeebendu/eunica-users:latest
-    container_name: eunicausers
-    restart: on-failure
+  jenkins:
+    image: jenkins/jenkins:2.204
+    container_name: jenkins
+    restart: unless-stopped
+    hostname: jenkins
+    network_mode: bridge
     ports:
-      - "8443:8443"
+      - "8080:8080/tcp"
     volumes:
-      - ${DATA}/users:/opt/service
-    networks:
-      - portainer
+      - /var/lib/jenkins:/var/jenkins_home
+    #environment:
 
 networks:
   portainer:

@@ -4,20 +4,14 @@
 # Copyright 2023 by Espire Infolabs
 #------------------------------------------------------------------------------
 version: '3'
-#all port number should be exposed appending 9
 services:
-
-  eunicausers:
-    image: espiredeebendu/eunica-users:latest
-    container_name: eunicausers
-    restart: on-failure
+  memcached:
+    image: memcached:1.5.19-alpine
+    container_name: memcached
+    restart: unless-stopped
+    network_mode: bridge
     ports:
-      - "8443:8443"
-    volumes:
-      - ${DATA}/users:/opt/service
-    networks:
-      - portainer
-
+      - 11211:11211/tcp
 networks:
   portainer:
     name: portainer
