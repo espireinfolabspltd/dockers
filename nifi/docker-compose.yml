@@ -9,12 +9,9 @@ services:
     image: apache/nifi:1.10.0
     container_name: nifi
     restart: unless-stopped
-    network_mode: bridge
     ports:
       # HTTP
-      #- 8080:8080/tcp
-      # HTTPS
-      - 10443:8443/tcp
+      - 10080:8080/tcp
       # Remote Input Socket
       - 10000:10000/tcp
       # JVM Debugger
@@ -46,47 +43,10 @@ services:
 
       ########## Web ##########
       # nifi.web.http.host
-      #NIFI_WEB_HTTP_HOST: '0.0.0.0'
+      NIFI_WEB_HTTP_HOST: '0.0.0.0'
       # nifi.web.http.port
       #   HTTP Port
-      #NIFI_WEB_HTTP_PORT: 8080
-
-      # nifi.web.https.host
-      NIFI_WEB_HTTPS_HOST: '0.0.0.0'
-      NIFI_WEB_HTTP_PORT: 8443
-
-      # nifi.web.proxy.host
-      #   If mapping the HTTPS port specifying trusted hosts should be provided for this property.
-      #NIFI_WEB_PROXY_HOST: ''
-
-      # nifi.web.proxy.context.path
-      #   If NiFi is proxied at context paths other than the root path of the proxy, the paths need to be set in this
-      #   property.
-      #NIFI_WEB_PROXY_CONTEXT_PATH: ''
-
-      ########## Security ##########
-      # nifi.security.keystore
-      #  Filename of the Keystore that contains the server’s private key.
-      KEYSTORE_PATH: '/opt/certs/keystore.jks'
-      KEYSTORE_PASSWORD: 'Reset@123'
-      KEYSTORE_TYPE: JKS
-      # nifi.security.keyPasswd
-      #   The password for the certificate in the Keystore. If not set, the value of nifi.security.keystorePasswd will
-      #   be used.
-      KEY_PASSWORD: 'Reset@123'
-
-      # nifi.security.truststore
-      #   Filename of the Truststore that will be used to authorize those connecting to NiFi. A secured instance with
-      #   no Truststore will refuse all incoming connections.
-      #TRUSTSTORE_PATH: '/opt/certs/truststore.jks'
-      # nifi.security.truststorePasswd
-      #   The password for the Truststore.
-      #TRUSTSTORE_PASSWORD: ''
-      # nifi.security.truststoreType
-      #   The type of the Truststore. Must be either PKCS12 or JKS. JKS is the preferred type, PKCS12 files will be
-      #   loaded with BouncyCastle provider.
-      #TRUSTSTORE_TYPE: JKS
-
+      NIFI_WEB_HTTP_PORT: 8080
 
       ########## LDAP ##########
       # Url - Space-separated list of URLs of the LDAP servers (i.e. ldap://<hostname>:<port>).
@@ -192,6 +152,8 @@ services:
       # nifi.variable.registry.properties
       #   External properties files for variable registry. Supports a comma delimited list of file locations.
       #NIFI_VARIABLE_REGISTRY_PROPERTIES: ''
+    networks:
+      - portainer
 networks:
   portainer:
     name: portainer
