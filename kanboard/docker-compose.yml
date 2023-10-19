@@ -6,7 +6,6 @@
 version: "3.6"
 #all port number should be exposed appending 9
 services:
-
   kanboard:
     image: kanboard/kanboard:latest
     container_name: kanboard
