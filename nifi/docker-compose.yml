@@ -44,7 +44,7 @@ services:
     mem_limit: 8G
     mem_reservation: 8G
     volumes:
-      - /home/heisenberg/Workspace/nifi:/home/nifi
+      - /nifi:/home/nifi
       - ./certs:/opt/certs
       # mkdir /var/lib/nifi && chown -R 1000:1000 /var/lib/nifi
       - /var/lib/nifi/database_repository:/opt/nifi/nifi-current/database_repository
@@ -54,7 +54,7 @@ services:
       - /var/lib/nifi/state:/opt/nifi/nifi-current/state
       - /var/lib/nifi/logs:/opt/nifi/nifi-current/logs
       # A custom nifi.properties file can be mounted as follows.
-      #- /var/lib/nifi/conf/nifi.properties:/opt/nifi/nifi-current/conf/nifi.properties:ro
+      # - /var/lib/nifi/conf/nifi.properties:/opt/nifi/nifi-current/conf/nifi.properties:ro
     environment:
       SINGLE_USER_CREDENTIALS_USERNAME: admin
       SINGLE_USER_CREDENTIALS_PASSWORD: 9Ptk5ADcjBmdTn
