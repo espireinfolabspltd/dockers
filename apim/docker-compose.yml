@@ -66,10 +66,10 @@ services:
     volumes:
       - ./apim:/home/wso2carbon/wso2-config-volume
     ports:
-      - "9763:9763"
-      - "9443:9443"
-      - "8280:8280"
-      - "8243:8243"
+      - "19763:9763"
+      - "19443:9443"
+      - "18280:8280"
+      - "18243:8243"
     networks:
       - portainer
 
