@@ -1,6 +1,7 @@
-version: '2.3'
+version: '3'
 services:
   mysql:
+    container_name: apim-mysql
     image: mysql:5.7.19
     ports:
       - 3306
@@ -16,6 +17,7 @@ services:
       retries: 5
       start_period: 80s
   am-analytics:
+    container_name: apim-analytics
     image: wso2/wso2am-analytics-worker:2.6.0
     ports:
       - "9091:9091"
@@ -27,8 +29,7 @@ services:
       start_period: 120s
       retries: 10
     depends_on:
-      mysql:
-        condition: service_healthy
+      - apim-mysql
     volumes:
       - ./apim-analytics:/home/wso2carbon/wso2-config-volume
   api-manager:
@@ -40,10 +41,8 @@ services:
       start_period: 100s
       retries: 10
     depends_on:
-      mysql:
-        condition: service_healthy
-      am-analytics:
-        condition: service_healthy
+      - apim-mysql
+      - apim-analytics
     volumes:
       - ./apim:/home/wso2carbon/wso2-config-volume
     ports:
