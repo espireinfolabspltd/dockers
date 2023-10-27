@@ -1,23 +1,38 @@
 version: '3'
 services:
-  mysql:
-    image: mysql:5.7.19
+  apimmysql:
+    image: library/mariadb:10
     container_name: apimmysql
-    ports:
-      - 3306
+    volumes:
+      - ${DATA}/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - ./mysql/scripts:/docker-entrypoint-initdb.d
-    command: [ --ssl=0 ]
-#    healthcheck:
-#      test: [ "CMD", "mysqladmin" ,"ping", "-uroot", "-proot" ]
-#      interval: 30s
-#      timeout: 60s
-#      retries: 5
-#      start_period: 80s
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: KeycloakDB
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "--silent" ]
     networks:
       - portainer
+
+#  mysql:
+#    image: mysql:5.7.19
+#    container_name: apimmysql
+#    ports:
+#      - 3306
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#    volumes:
+#      - ./mysql/scripts:/docker-entrypoint-initdb.d
+#    command: [ --ssl=0 ]
+##    healthcheck:
+##      test: [ "CMD", "mysqladmin" ,"ping", "-uroot", "-proot" ]
+##      interval: 30s
+##      timeout: 60s
+##      retries: 5
+##      start_period: 80s
+#    networks:
+#      - portainer
 
   am-analytics:
     container_name: apimanalytics
@@ -48,7 +63,6 @@ services:
 #      retries: 10
     depends_on:
       - apimmysql
-      - apimanalytics
     volumes:
       - ./apim:/home/wso2carbon/wso2-config-volume
     ports:
