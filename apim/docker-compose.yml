@@ -1,8 +1,8 @@
 version: '3'
 services:
   mysql:
-    container_name: apim-mysql
     image: mysql:5.7.19
+    container_name: apimmysql
     ports:
       - 3306
     environment:
@@ -10,29 +10,29 @@ services:
     volumes:
       - ./mysql/scripts:/docker-entrypoint-initdb.d
     command: [ --ssl=0 ]
-    healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-uroot", "-proot" ]
-      interval: 30s
-      timeout: 60s
-      retries: 5
-      start_period: 80s
+#    healthcheck:
+#      test: [ "CMD", "mysqladmin" ,"ping", "-uroot", "-proot" ]
+#      interval: 30s
+#      timeout: 60s
+#      retries: 5
+#      start_period: 80s
     networks:
       - portainer
 
   am-analytics:
-    container_name: apim-analytics
+    container_name: apimanalytics
     image: wso2/wso2am-analytics-worker:2.6.0
     ports:
       - "9091:9091"
       - "9444:9444"
-    healthcheck:
-      test: [ "CMD", "nc", "-z","localhost", "9091" ]
-      interval: 10s
-      timeout: 120s
-      start_period: 120s
-      retries: 10
+#    healthcheck:
+#      test: [ "CMD", "nc", "-z","localhost", "9091" ]
+#      interval: 10s
+#      timeout: 120s
+#      start_period: 120s
+#      retries: 10
     depends_on:
-      - apim-mysql
+      - apimmysql
     volumes:
       - ./apim-analytics:/home/wso2carbon/wso2-config-volume
     networks:
@@ -47,8 +47,8 @@ services:
       start_period: 100s
       retries: 10
     depends_on:
-      - apim-mysql
-      - apim-analytics
+      - apimmysql
+      - apimanalytics
     volumes:
       - ./apim:/home/wso2carbon/wso2-config-volume
     ports:
