@@ -1,1 +1,0 @@
-# Docker and Docker Compose Resources for WSO2 API Management

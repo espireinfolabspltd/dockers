@@ -1,68 +1,37 @@
 version: '3'
 services:
-  apimmysql:
+  apim-mysql:
+    container_name: apim-mysql
     image: library/mariadb:10
-    container_name: apimmysql
+    restart: on-failure
     volumes:
       - ${DATA}/mysql:/var/lib/mysql
+      - ./mysql/scripts:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: keycloak
-      MYSQL_USER: keycloak
-      MYSQL_PASSWORD: KeycloakDB
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "--silent" ]
     networks:
       - portainer
 
-#  mysql:
-#    image: mysql:5.7.19
-#    container_name: apimmysql
-#    ports:
-#      - 3306
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#    volumes:
-#      - ./mysql/scripts:/docker-entrypoint-initdb.d
-#    command: [ --ssl=0 ]
-##    healthcheck:
-##      test: [ "CMD", "mysqladmin" ,"ping", "-uroot", "-proot" ]
-##      interval: 30s
-##      timeout: 60s
-##      retries: 5
-##      start_period: 80s
-#    networks:
-#      - portainer
-
-  am-analytics:
-    container_name: apimanalytics
+  apim-analytics:
+    container_name: apim-analytics
     image: wso2/wso2am-analytics-worker:2.6.0
-    ports:
-      - "9091:9091"
-      - "9444:9444"
-#    healthcheck:
-#      test: [ "CMD", "nc", "-z","localhost", "9091" ]
-#      interval: 10s
-#      timeout: 120s
-#      start_period: 120s
-#      retries: 10
-    depends_on:
-      - apimmysql
+    restart: on-failure
     volumes:
       - ./apim-analytics:/home/wso2carbon/wso2-config-volume
+    ports:
+      - "19091:9091"
+      - "19444:9444"
+    depends_on:
+      - apim-mysql
     networks:
       - portainer
 
-  api-manager:
+  apim:
+    container_name: apim
     image: wso2/wso2am:2.6.0
-#    healthcheck:
-#      test: [ "CMD", "curl", "-k", "-f", "https://localhost:9443/carbon/admin/login.jsp" ]
-#      interval: 10s
-#      timeout: 120s
-#      start_period: 100s
-#      retries: 10
-    depends_on:
-      - apimmysql
+    restart: on-failure
     volumes:
       - ./apim:/home/wso2carbon/wso2-config-volume
     ports:
@@ -70,6 +39,8 @@ services:
       - "19443:9443"
       - "18280:8280"
       - "18243:8243"
+    depends_on:
+      - apim-mysql
     networks:
       - portainer
 
