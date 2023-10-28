@@ -2,7 +2,7 @@ version: '3'
 services:
   apim-mysql:
     container_name: apim-mysql
-    image: mariadb:10.2
+    image: library/mariadb:10.1
     restart: always
     ports:
       - "3306:3306"
@@ -16,16 +16,6 @@ services:
       MYSQL_PASSWORD: apimrw
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "--silent" ]
-#    entrypoint:
-#      sh -c "
-#      echo
-#      '
-#      CREATE DATABASE IF NOT EXISTS stats_db;
-#      CREATE DATABASE IF NOT EXISTS apimgt_db;
-#      CREATE DATABASE IF NOT EXISTS carbon_db;
-#      ' > /docker-entrypoint-initdb.d/init.sql;
-#      /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-#      "
     networks:
       - portainer
 
