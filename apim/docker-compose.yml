@@ -6,7 +6,7 @@ services:
     restart: on-failure
     volumes:
       - ${DATA}/mysql:/var/lib/mysql
-      - ./mysql/scripts:/docker-entrypoint-initdb.d
+      - ${DATA}/mysql/scripts:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: root
     healthcheck:
