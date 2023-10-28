@@ -2,19 +2,18 @@ version: '3'
 services:
   apim-mysql:
     container_name: apim-mysql
-    image: library/mariadb:10
-    restart: on-failure
+    image: mariadb:10.2
+    restart: always
     ports:
       - "3306:3306"
     volumes:
       - ${DATA}/mysql:/var/lib/mysql
-#      - ${DATA}/mysql/scripts:/docker-entrypoint-initdb.d
+      - ${DATA}/mysql/scripts:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
       MYSQL_DATABASE: apim
       MYSQL_USER: apim
-      MYSQL_PASSWORD: ApimDB
+      MYSQL_PASSWORD: apimrw
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "--silent" ]
 #    entrypoint:
