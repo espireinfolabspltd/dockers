@@ -1,4 +1,4 @@
-<datasources-configuration xmlns:svns="http://org.wso2.securevault/configuration">
+<datasources-configuration>
 
     <providers>
         <provider>org.wso2.carbon.ndatasource.rdbms.RDBMSDataSourceReader</provider>
@@ -14,7 +14,7 @@
             </jndiConfig>
             <definition type="RDBMS">
                 <configuration>
-                    <url>jdbc:mysql://mysql:3306/carbon_db?autoReconnect=true&amp;useSSL=false</url>
+                    <url>jdbc:mysql://apim-mysql:3306/carbon_db?autoReconnect=true&amp;useSSL=false</url>
                     <username>root</username>
                     <password>root</password>
                     <driverClassName>com.mysql.jdbc.Driver</driverClassName>
@@ -36,7 +36,7 @@
             </jndiConfig>
             <definition type="RDBMS">
                 <configuration>
-                    <url>jdbc:mysql://mysql:3306/apimgt_db?autoReconnect=true&amp;useSSL=false</url>
+                    <url>jdbc:mysql://apim-mysql:3306/apimgt_db?autoReconnect=true&amp;useSSL=false</url>
                     <username>root</username>
                     <password>root</password>
                     <defaultAutoCommit>true</defaultAutoCommit>
@@ -106,7 +106,5 @@
                 </configuration>
             </definition>
         </datasource-->
-
     </datasources>
-
 </datasources-configuration>

@@ -4,48 +4,61 @@ services:
     container_name: apim-mysql
     image: library/mariadb:10
     restart: on-failure
+    ports:
+      - "3306:3306"
     volumes:
       - ${DATA}/mysql:/var/lib/mysql
       - ${DATA}/mysql/scripts:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
       MYSQL_DATABASE: shared
       MYSQL_USER: apim
       MYSQL_PASSWORD: ApimDB
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "--silent" ]
+    entrypoint:
+      sh -c "
+      echo
+      '
+      CREATE DATABASE IF NOT EXISTS stats_db;
+      CREATE DATABASE IF NOT EXISTS apimgt_db;
+      CREATE DATABASE IF NOT EXISTS carbon_db;
+      ' > /docker-entrypoint-initdb.d/init.sql;
+      /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      "
     networks:
       - portainer
 
-  apim-analytics:
-    container_name: apim-analytics
-    image: wso2/wso2am-analytics-worker:2.6.0
-    restart: on-failure
-    volumes:
-      - ./apim-analytics:/home/wso2carbon/wso2-config-volume
-    ports:
-      - "19091:9091"
-      - "19444:9444"
-    depends_on:
-      - apim-mysql
-    networks:
-      - portainer
-
-  apim:
-    container_name: apim
-    image: wso2/wso2am:2.6.0
-    restart: on-failure
-    volumes:
-      - ./apim:/home/wso2carbon/wso2-config-volume
-    ports:
-      - "19763:9763"
-      - "19443:9443"
-      - "18280:8280"
-      - "18243:8243"
-    depends_on:
-      - apim-mysql
-    networks:
-      - portainer
+#  apim-analytics:
+#    container_name: apim-analytics
+#    image: wso2/wso2am-analytics-worker:2.6.0
+#    restart: on-failure
+#    volumes:
+#      - ./apim-analytics:/home/wso2carbon/wso2-config-volume
+#    ports:
+#      - "19091:9091"
+#      - "19444:9444"
+#    depends_on:
+#      - apim-mysql
+#    networks:
+#      - portainer
+#
+#  apim:
+#    container_name: apim
+#    image: wso2/wso2am:2.6.0
+#    restart: on-failure
+#    volumes:
+#      - ./apim:/home/wso2carbon/wso2-config-volume
+#    ports:
+#      - "19763:9763"
+#      - "19443:9443"
+#      - "18280:8280"
+#      - "18243:8243"
+#    depends_on:
+#      - apim-mysql
+#    networks:
+#      - portainer
 
 networks:
   portainer:
