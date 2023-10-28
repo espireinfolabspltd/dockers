@@ -33,21 +33,21 @@ services:
 #    networks:
 #      - portainer
 #
-#  apim:
-#    container_name: apim
-#    image: wso2/wso2am:2.6.0
-#    restart: on-failure
-#    volumes:
-#      - ./apim:/home/wso2carbon/wso2-config-volume
-#    ports:
-#      - "19763:9763"
-#      - "19443:9443"
-#      - "18280:8280"
-#      - "18243:8243"
-#    depends_on:
-#      - apim-mysql
-#    networks:
-#      - portainer
+  apim:
+    container_name: apim
+    image: wso2/wso2am:2.6.0
+    restart: always
+    volumes:
+      - ./apim:/home/wso2carbon/wso2-config-volume
+    ports:
+      - "19763:9763"
+      - "19443:9443"
+      - "18280:8280"
+      - "18243:8243"
+    depends_on:
+      - apim-mysql
+    networks:
+      - portainer
 
 networks:
   portainer:
