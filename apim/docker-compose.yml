@@ -8,7 +8,7 @@ services:
       - "3306:3306"
     volumes:
       - ${DATA}/mysql:/var/lib/mysql
-      - ${DATA}/mysql/scripts:/docker-entrypoint-initdb.d
+#      - ${DATA}/mysql/scripts:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_ALLOW_EMPTY_PASSWORD: yes
@@ -17,16 +17,16 @@ services:
       MYSQL_PASSWORD: ApimDB
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "--silent" ]
-    entrypoint:
-      sh -c "
-      echo
-      '
-      CREATE DATABASE IF NOT EXISTS stats_db;
-      CREATE DATABASE IF NOT EXISTS apimgt_db;
-      CREATE DATABASE IF NOT EXISTS carbon_db;
-      ' > /docker-entrypoint-initdb.d/init.sql;
-      /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-      "
+#    entrypoint:
+#      sh -c "
+#      echo
+#      '
+#      CREATE DATABASE IF NOT EXISTS stats_db;
+#      CREATE DATABASE IF NOT EXISTS apimgt_db;
+#      CREATE DATABASE IF NOT EXISTS carbon_db;
+#      ' > /docker-entrypoint-initdb.d/init.sql;
+#      /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+#      "
     networks:
       - portainer
 
