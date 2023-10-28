@@ -37,8 +37,8 @@ services:
     container_name: apim
     image: wso2/wso2am:2.6.0
     restart: always
-    #volumes:
-      #- ${DATA}/wso2carbon:/home/wso2carbon
+    volumes:
+      - ${DATA}/wso2am-2.6.0/repository:/home/wso2carbon/wso2am-2.6.0/repository
       #- ${DATA}/wso2-config-volume:/home/wso2-config-volume
     ports:
       - "19763:9763"
