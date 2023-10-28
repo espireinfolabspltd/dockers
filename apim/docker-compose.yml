@@ -9,6 +9,9 @@ services:
       - ${DATA}/mysql/scripts:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: shared
+      MYSQL_USER: apim
+      MYSQL_PASSWORD: ApimDB
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "--silent" ]
     networks:

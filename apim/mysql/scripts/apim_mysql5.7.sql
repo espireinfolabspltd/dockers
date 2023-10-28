@@ -1,6 +1,7 @@
 CREATE Database `stats_db`;
-
+GRANT ALL ON `stats_db`.* TO 'apim'@'%';
 CREATE Database `apimgt_db`;
+GRANT ALL ON `apimgt_db`.* TO 'apim'@'%';
 
 USE `apimgt_db`;
 

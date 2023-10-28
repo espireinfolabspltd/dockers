@@ -1,4 +1,5 @@
 CREATE Database `carbon_db`;
+GRANT ALL ON `carbon_db`.* TO 'apim'@'%';
 
 USE `carbon_db`;
 
