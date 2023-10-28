@@ -12,7 +12,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_ALLOW_EMPTY_PASSWORD: yes
-      MYSQL_DATABASE: shared
+      MYSQL_DATABASE: apim
       MYSQL_USER: apim
       MYSQL_PASSWORD: ApimDB
     healthcheck:
