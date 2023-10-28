@@ -1,11 +1,8 @@
 <datasources-configuration>
-
     <providers>
         <provider>org.wso2.carbon.ndatasource.rdbms.RDBMSDataSourceReader</provider>
     </providers>
-
     <datasources>
-
         <datasource>
             <name>WSO2_CARBON_DB</name>
             <description>The datasource used for registry and user manager</description>
@@ -27,7 +24,6 @@
                 </configuration>
             </definition>
         </datasource>
-
         <datasource>
             <name>WSO2AM_DB</name>
             <description>The datasource used for API Manager database</description>
@@ -49,7 +45,6 @@
                 </configuration>
             </definition>
         </datasource>
-
         <datasource>
             <name>WSO2_MB_STORE_DB</name>
             <description>The datasource used for message broker database</description>
@@ -71,7 +66,6 @@
                 </configuration>
             </definition>
         </datasource>
-
         <!-- For an explanation of the properties, see: http://people.apache.org/~fhanik/jdbc-pool/jdbc-pool.html -->
         <!--datasource>
             <name>SAMPLE_DATA_SOURCE</name>
@@ -84,7 +78,6 @@
             </jndiConfig>
             <definition type="RDBMS">
                 <configuration>
-
                     <defaultAutoCommit></defaultAutoCommit>
                     <defaultReadOnly></defaultReadOnly>
                     <defaultTransactionIsolation>NONE|READ_COMMITTED|READ_UNCOMMITTED|REPEATABLE_READ|SERIALIZABLE</defaultTransactionIsolation>
@@ -95,14 +88,12 @@
                     <maxIdle></maxIdle>
                     <initialSize></initialSize>
                     <maxWait></maxWait>
-
                     <dataSourceClassName>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</dataSourceClassName>
                     <dataSourceProps>
                         <property name="url">jdbc:mysql://localhost:3306/Test1</property>
                         <property name="user">root</property>
                         <property name="password">123</property>
                     </dataSourceProps>
-
                 </configuration>
             </definition>
         </datasource-->

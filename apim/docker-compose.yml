@@ -38,7 +38,8 @@ services:
     image: wso2/wso2am:2.6.0
     restart: always
     volumes:
-      - ./apim:/home/wso2carbon/wso2-config-volume
+      - ${DATA}/wso2carbon:/home/wso2carbon
+      - ${DATA}/wso2-config-volume:/home/wso2-config-volume
     ports:
       - "19763:9763"
       - "19443:9443"
