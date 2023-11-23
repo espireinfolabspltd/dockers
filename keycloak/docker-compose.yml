@@ -23,7 +23,7 @@ services:
       - portainer
 
   keycloak:
-    image: keycloak/keycloak:20.0.0
+    image: quay.io/keycloak/keycloak:20.0.0
     container_name: keycloak
     volumes:
       #- ${DATA}/keycloak:/opt/jboss/keycloak
