@@ -23,7 +23,7 @@ services:
       - portainer
 
   keycloak:
-    image: bitnami/keycloak:22.0.1
+    image: jboss/keycloak
     container_name: keycloak
     restart: unless-stopped
     volumes:
@@ -31,32 +31,16 @@ services:
     ports:
       - "6443:8443"
     environment:
-      KEYCLOAK_DATABASE_VENDOR: mariadb
-      KEYCLOAK_DATABASE_HOST: mariadb
-      KEYCLOAK_DATABASE_PORT: 3306
-      KEYCLOAK_DATABASE_NAME: keycloak
-      KEYCLOAK_DATABASE_USER: keycloak
-      KEYCLOAK_DATABASE_PASSWORD: KeycloakDB
-      KEYCLOAK_DATABASE_SCHEMA: public
-      KEYCLOAK_ADMIN_USER: admin
-      KEYCLOAK_ADMIN_PASSWORD: Pa55w0rd
-#      KEYCLOAK_ENABLE_HEALTH_ENDPOINTS: 'true'
-#      KEYCLOAK_ENABLE_STATISTICS: 'true'
-      KC_HOSTNAME: auth.espire.com
-#      KC_PROXY: edge
-#      KC_PROXY_ADDRESS_FORWARDING: 'true'
-      KC_HTTP_ENABLED: 'true'
-#      DB_VENDOR: mariadb
-#      DB_ADDR: mariadb
-#      DB_DATABASE: keycloak
-#      DB_USER: keycloak
-#      DB_PASSWORD: KeycloakDB
-#      KEYCLOAK_USER: admin
-#      KEYCLOAK_PASSWORD: Pa55w0rd
-#      JGROUPS_DISCOVERY_PROTOCOL: JDBC_PING
-#      KC_HOSTNAME_STRICT_HTTPS: false
-#      KC_HTTPS_CERTIFICATE_FILE: /opt/jboss/keycloak/certs/eunica.crt
-#      KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/jboss/keycloak/certs/eunica.key
+      KEYCLOAK_LOGLEVEL: DEBUG
+      DB_VENDOR: mariadb
+      DB_ADDR: mariadb
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: KeycloakDB
+      DB_PORT: 3306
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: Pa55w0rd
+      KEYCLOAK_STATISTICS: all
     depends_on:
       - mariadb
     networks:
