@@ -40,8 +40,8 @@ services:
       DB_USER: keycloak
       DB_PASSWORD: KeycloakDB
       DB_PORT: 3306
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: Pa55w0rd
+      #KEYCLOAK_USER: admin
+      #KEYCLOAK_PASSWORD: Pa55w0rd
       KEYCLOAK_STATISTICS: all
     depends_on:
       - mariadb
