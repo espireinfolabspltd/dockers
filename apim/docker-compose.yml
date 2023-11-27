@@ -14,7 +14,18 @@ services:
     ports:
       - "8765:8765"
     volumes:
-      - ${DATA}/config:/opt/service/config
+      - ${DATA}/gateway/config:/opt/service/config
+    networks:
+      - portainer
+
+  apim-admin:
+    image: deebendu/apim-admin:latest
+    container_name: apim-admin
+    restart: on-failure
+    ports:
+      - "8022:8022"
+    volumes:
+      - ${DATA}/admin/config:/opt/service/config
     networks:
       - portainer
 
