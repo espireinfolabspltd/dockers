@@ -19,7 +19,7 @@ services:
       - portainer
 
   apim-admin:
-    image: deebendu/apim-admin:1.0.1
+    image: deebendu/apim-admin:latest
     container_name: apim-admin
     restart: on-failure
     ports:
