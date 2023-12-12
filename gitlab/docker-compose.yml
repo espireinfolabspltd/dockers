@@ -29,7 +29,6 @@ services:
         nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/server-key.pem"
         nginx['ssl_protocols'] = "TLSv1.1 TLSv1.2"
         nginx['redirect_http_to_https'] = true
-        nginx[‘custom_gitlab_server_config’] = “location ^~/.well-known {\n alias /opt/gitlab/embedded/service/gitlab-rails/public/.well-known;\n}\n”
     shm_size: '1024m'
     networks:
       - portainer
