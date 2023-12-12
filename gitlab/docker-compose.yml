@@ -1,0 +1,33 @@
+#------------------------------------------------------------------------------
+# Author: Deebendu Kumar
+# Created: 17-10-2023
+# Copyright 2023 by Espire Infolabs
+#------------------------------------------------------------------------------
+version: '3'
+#all port number should be exposed appending 9
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    restart: on-failure
+    privileged: true
+    hostname: 'localhost'
+    ports:
+      - "8888:8888"
+      - "2224:22"
+    volumes:
+      - ${DATA}/config:/etc/gitlab
+      - ${DATA}/logs:/var/log/gitlab
+      - ${DATA}/data:/var/opt/gitlab
+    environment:
+      GITLAB_ROOT_PASSWORD: "MySecretPassword"
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:8888'
+    shm_size: '1024m'
+    networks:
+      - portainer
+
+networks:
+  portainer:
+    name: portainer
+    external: true
