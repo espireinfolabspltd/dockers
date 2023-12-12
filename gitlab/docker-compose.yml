@@ -24,7 +24,6 @@ services:
       GITLAB_ROOT_PASSWORD: "MySecretPassword"
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://172.187.226.194:8888'
-        nginx[‘listen_addresses’] = [‘127.0.0.1’, “[::1]”]
         nginx['listen_port'] = 8888
         nginx['ssl_certificate'] = "/etc/gitlab/ssl/server-cert.pem"
         nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/server-key.pem"
