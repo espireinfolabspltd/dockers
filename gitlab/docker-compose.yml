@@ -19,14 +19,21 @@ services:
       - ${DATA}/config:/etc/gitlab
       - ${DATA}/logs:/var/log/gitlab
       - ${DATA}/data:/var/opt/gitlab
+      - ${DATA}/certs:/etc/gitlab/ssl
     environment:
       GITLAB_ROOT_PASSWORD: "MySecretPassword"
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://172.187.226.194:8888'
+        nginx[‘listen_addresses’] = [‘127.0.0.1’, “[::1]”]
+        nginx['listen_port'] = 8888
+        nginx['ssl_certificate'] = "/etc/gitlab/ssl/server-cert.pem"
+        nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/server-key.pem"
+        nginx['ssl_protocols'] = "TLSv1.1 TLSv1.2"
+        nginx['redirect_http_to_https'] = true
+        nginx[‘custom_gitlab_server_config’] = “location ^~/.well-known {\n alias /opt/gitlab/embedded/service/gitlab-rails/public/.well-known;\n}\n”
     shm_size: '1024m'
     networks:
       - portainer
-
 networks:
   portainer:
     name: portainer
