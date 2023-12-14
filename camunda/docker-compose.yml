@@ -1,0 +1,30 @@
+#------------------------------------------------------------------------------
+# Author: Deebendu Kumar
+# Created: 17-10-2023
+# Copyright 2023 by Espire Infolabs
+#------------------------------------------------------------------------------
+version: '3'
+#all port number should be exposed appending 9
+services:
+  camunda:
+    image: camunda/camunda-bpm-platform:7.20.0
+    container_name: camunda
+    hostname: platform
+    ports:
+      - "8084:8080"
+    environment:
+      SKIP_DB_CONFIG: "false"
+      DB_DRIVER: com.mysql.jdbc.Driver
+      DB_URL: jdbc:mysql://mariadb:3306/camunda_db?autoReconnect=true
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      DB_VALIDATION_QUERY: "SELECT 1"
+    depends_on:
+      - mariadb
+    networks:
+      - portainer
+
+networks:
+  portainer:
+    name: portainer
+    external: true
