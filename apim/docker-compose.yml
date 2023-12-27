@@ -26,7 +26,7 @@ services:
       - "8022:8022"
     volumes:
       - ${DATA}/admin/config:/opt/service/config
-      - ${DATA}/admin/cert:/opt/service/cert
+      - ${DATA}/admin/certs:/opt/service/certs
       - ${DATA}/admin/trace:/opt/service/trace
     networks:
       - portainer
