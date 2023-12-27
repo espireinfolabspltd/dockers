@@ -7,16 +7,18 @@ version: '3'
 #all port number should be exposed appending 9
 services:
 
-#  apim:
-#    image: deebendu/apim:latest
-#    container_name: apim
-#    restart: on-failure
-#    ports:
-#      - "8765:8765"
-#    volumes:
-#      - ${DATA}/gateway/config:/opt/service/config
-#    networks:
-#      - portainer
+  apim:
+    image: deebendu/apim:latest
+    container_name: apim
+    restart: on-failure
+    ports:
+      - "8765:8765"
+    volumes:
+      - ${DATA}/gateway/config:/opt/service/config
+      - ${DATA}/gateway/certs:/opt/service/certs
+      - ${DATA}/gateway/trace:/opt/service/trace
+    networks:
+      - portainer
 
   apim-admin:
     image: deebendu/apim-admin:latest
