@@ -25,13 +25,11 @@ services:
       - portainer
 
   keycloak:
-    image: jboss/keycloak
+    image: quay.io/keycloak/keycloak:latest
     container_name: keycloak
     restart: unless-stopped
-    volumes:
-      - ./certs:/opt/jboss/keycloak/certs
     ports:
-      - "6443:8443"
+      - "8443:8443"
     environment:
       KEYCLOAK_LOGLEVEL: DEBUG
       DB_VENDOR: mariadb
@@ -43,6 +41,7 @@ services:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: Pa55w0rd
       KEYCLOAK_STATISTICS: all
+      PROXY_ADDRESS_FORWARDING: "true"
     depends_on:
       - mariadb
     networks:
