@@ -42,8 +42,6 @@ services:
       KEYCLOAK_PASSWORD: Pa55w0rd
       KEYCLOAK_STATISTICS: all
       PROXY_ADDRESS_FORWARDING: "true"
-    command:
-      - start --hostname-strict-backchannel=false
     depends_on:
       - mariadb
     networks:
