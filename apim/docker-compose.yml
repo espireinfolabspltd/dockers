@@ -15,7 +15,7 @@ services:
       - "8765:8765"
     volumes:
       - ${DATA}/gateway/config:/opt/service/config
-      - ${DATA}/gateway/certs:/lib/jvm/java-11-openjdk-amd64/jre/lib/security
+      - ${DATA}/gateway/certs:/opt/service/certs
       - ${DATA}/gateway/trace:/opt/service/trace
     networks:
       - portainer
