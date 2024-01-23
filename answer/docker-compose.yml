@@ -1,0 +1,21 @@
+#------------------------------------------------------------------------------
+# Author: Deebendu Kumar
+# Created: 17-10-2023
+# Copyright 2023 by Espire Infolabs
+#------------------------------------------------------------------------------
+version: "3"
+services:
+  answer:
+    image: apache/answer
+    ports:
+      - '9080:80'
+    restart: on-failure
+    volumes:
+      - /opt/answer:/data
+    networks:
+      - portainer
+
+networks:
+  portainer:
+    name: portainer
+    external: true
