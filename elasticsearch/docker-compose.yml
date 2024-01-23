@@ -35,7 +35,7 @@ services:
       - portainer
     depends_on:
       - elasticsearch
-        
+
 networks:
   portainer:
     name: portainer
