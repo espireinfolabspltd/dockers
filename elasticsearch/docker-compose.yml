@@ -5,17 +5,25 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
     restart: always
     environment:
-      discovery.type: single-node
-      bootstrap.memory_lock: true
-      ES_JAVA_OPTS: -Xms512m -Xmx512m
-      cluster.name: elasticsearch
+      #- cluster.name=docker-test-cluster
+      - node.name=elasticsearch
+      - thread_pool.search.queue_size=500
+      - processors=1
+      - "ES_JAVA_OPTS=-Xms1152M -Xmx1152M"
+      — discovery.type=single-node
+      # Env vars not followed by a dot, should not be parsed by the wrapper script.
+      #- irrelevantsetting=foo
+      # Capitalized or all-caps env vars should not be parsed either.
+      #- NonESRelatedVariable=bar
+      # Avoid test failures due to small disks.
+      #- cluster.routing.allocation.disk.threshold_enabled=false
     ulimits:
       memlock:
         soft: -1
         hard: -1
     ports:
       - '9200:9200'
-      - '9300:9300'
+    mem_limit: 4g
     volumes:
       - /data/elasticsearch:/usr/share/elasticsearch/data
     networks:
@@ -26,11 +34,9 @@ services:
     container_name: kibana
     ports:
       - '5601:5601'
-      - '9600:9600'
     environment:
-      SERVERNAME: kibana
-      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
-      ES_JAVA_OPTS: -Xmx512m -Xms512m
+      - SERVERNAME=kibana
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     networks:
       - portainer
     depends_on:
