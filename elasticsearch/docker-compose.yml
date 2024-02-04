@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3"
 services:
   elasticsearch:
     container_name: elasticsearch
@@ -9,13 +9,6 @@ services:
       - thread_pool.search.queue_size=500
       - processors=1
       — discovery.type=single-node
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536
-        hard: 65536
     ports:
       - '9200:9200'
     mem_limit: 4g
