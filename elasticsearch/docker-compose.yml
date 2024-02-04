@@ -5,11 +5,9 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
     restart: always
     environment:
-      #- cluster.name=docker-test-cluster
       - node.name=elasticsearch
       - thread_pool.search.queue_size=500
       - processors=1
-      - "ES_JAVA_OPTS=-Xms1152M -Xmx1152M"
       — discovery.type=single-node
     ulimits:
       memlock:
