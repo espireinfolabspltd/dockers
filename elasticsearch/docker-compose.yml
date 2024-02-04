@@ -11,7 +11,7 @@ services:
       - processors=1
       - "ES_JAVA_OPTS=-Xms1152M -Xmx1152M"
       — discovery.type=single-node
-      # Env vars not followed by a dot, should not be parsed by the wrapper script.
+      #Env vars not followed by a dot, should not be parsed by the wrapper script.
       #- irrelevantsetting=foo
       # Capitalized or all-caps env vars should not be parsed either.
       #- NonESRelatedVariable=bar
