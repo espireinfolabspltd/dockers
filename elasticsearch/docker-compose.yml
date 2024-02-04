@@ -8,7 +8,7 @@ services:
       - node.name=elasticsearch
       - thread_pool.search.queue_size=500
       - processors=1
-      — discovery.type=single-node
+      - discovery.type=single-node
     ports:
       - '9200:9200'
     mem_limit: 4g
