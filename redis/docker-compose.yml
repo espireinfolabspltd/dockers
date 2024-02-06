@@ -18,15 +18,14 @@ services:
     networks:
       - portainer
 
-  redis-commander:
-    image: rediscommander/redis-commander:latest
-    container_name: redis-commander
-    restart: unless-stopped
-    hostname: redis-commander
+  redis_insight:
+    image: redislabs/redisinsight:latest
+    container_name: redis_insight
+    restart: always
     ports:
-      - 8081:8081/tcp
-    environment:
-      REDIS_HOSTS: redis1:192.0.2.1:6379:0:changeme
+      - 8001:8001
+    volumes:
+      - /opt/redis/insight:/db
     networks:
       - portainer
 
