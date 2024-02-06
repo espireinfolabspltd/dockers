@@ -15,6 +15,9 @@ services:
       - "8080:8080"
     volumes:
       - ${DATA}/app/config:/opt/service/config
+      - ${DATA}/app/certs:/opt/service/certs
+      - ${DATA}/app/trace:/opt/service/trace
+      - ${DATA}/app/lib:/opt/service/lib
     networks:
       - portainer
 
