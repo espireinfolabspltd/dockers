@@ -12,7 +12,7 @@ services:
     container_name: muuvr
     restart: on-failure
     ports:
-      - "8000:8080"
+      - "8000:8000"
     volumes:
       - ${DATA}/app/config:/opt/service/config
       - ${DATA}/app/certs:/opt/service/certs
