@@ -12,7 +12,7 @@ services:
     container_name: react-apim
     restart: on-failure
     ports:
-      - "3000:3000"
+      - "80:80"
     networks:
       - portainer
 
