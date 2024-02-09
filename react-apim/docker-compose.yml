@@ -1,22 +1,18 @@
 #------------------------------------------------------------------------------
 # Author: Lavi Jain
-# Created: 06-02-2024
-# Copyright 2023 by Espire Infolabs
+# Created: 09-02-2024
+# Copyright 2024 by Espire Infolabs
 #------------------------------------------------------------------------------
 version: '3'
 #all port number should be exposed appending
 services:
 
-  muuvr:
-    image: deebendu/muuvr:latest
-    container_name: muuvr
+  react-apim:
+    image: deebendu/react-apim:latest
+    container_name: react-apim
     restart: on-failure
     ports:
-      - "8080:8080"
-    volumes:
-      - ${DATA}/app/config:/opt/service/config
-      - ${DATA}/app/certs:/opt/service/certs
-      - ${DATA}/app/trace:/opt/service/trace
+      - "3000:3000"
     networks:
       - portainer
 
