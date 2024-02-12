@@ -33,6 +33,15 @@ services:
     networks:
       - portainer
 
+  react-apim:
+    image: deebendu/react-apim:latest
+    container_name: react-apim
+    restart: on-failure
+    ports:
+      - "8000:80"
+    networks:
+      - portainer
+
 networks:
   portainer:
     name: portainer
