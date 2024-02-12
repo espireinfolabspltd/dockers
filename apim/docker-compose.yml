@@ -42,6 +42,14 @@ services:
     networks:
       - portainer
 
+  consul:
+    image: hashicorp/consul:latest
+    container_name: consul
+    ports:
+      - "8500:8500"
+    networks:
+      - portainer
+
 networks:
   portainer:
     name: portainer
