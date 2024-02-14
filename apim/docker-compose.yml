@@ -33,16 +33,16 @@ services:
     networks:
       - portainer
 
-  react-apim:
-    image: deebendu/react-apim:latest
-    container_name: react-apim
-    restart: on-failure
-    ports:
-      - "8000:80"
-    volumes:
-      - ${DATA}/apimui/conf.d:/etc/nginx/conf.d
-    networks:
-      - portainer
+#  react-apim:
+#    image: deebendu/react-apim:latest
+#    container_name: react-apim
+#    restart: on-failure
+#    ports:
+#      - "8000:80"
+#    volumes:
+#      - ${DATA}/apimui/conf.d:/etc/nginx/conf.d
+#    networks:
+#      - portainer
 
   consul:
     image: hashicorp/consul:latest
