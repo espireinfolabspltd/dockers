@@ -39,6 +39,8 @@ services:
     restart: on-failure
     ports:
       - "8000:80"
+    volumes:
+      - ${DATA}/apimui/conf.d:/etc/nginx/conf.d
     networks:
       - portainer
 
