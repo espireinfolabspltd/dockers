@@ -1,0 +1,24 @@
+#------------------------------------------------------------------------------
+# Author: Deebendu Kumar
+# Created: 17-10-2023
+# Copyright 2023 by Espire Infolabs
+#------------------------------------------------------------------------------
+version: '3'
+#all port number should be exposed appending 9
+services:
+
+  react-apim:
+    image: deebendu/react-apim:latest
+    container_name: react-apim
+    restart: on-failure
+    ports:
+      - "8000:8000"
+    volumes:
+      - /etc/nginx/sites-enabled/apimui:/etc/nginx/conf.d
+    networks:
+      - portainer
+
+networks:
+  portainer:
+    name: portainer
+    external: true
