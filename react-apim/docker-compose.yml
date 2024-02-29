@@ -14,7 +14,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - /etc/nginx/sites-enabled/apimui:/etc/nginx/conf.d
+      - ./apimui:/etc/nginx/conf.d
     networks:
       - portainer
 
