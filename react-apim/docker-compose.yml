@@ -14,7 +14,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./conf:/etc/nginx/conf.d
+      - /opt/container/apim/apimui/conf.d:/etc/nginx/conf.d
     networks:
       - portainer
 
