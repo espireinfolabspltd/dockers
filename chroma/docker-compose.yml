@@ -23,39 +23,6 @@ services:
     networks:
       - portainer
 
-  ollama:
-    container_name: ollama
-    image: ollama/ollama:latest
-    restart: unless-stopped # possible values are: "no", always", "on-failure", "unless-stopped"
-    volumes:
-      - /data/ollama:/root/.ollama
-    ports:
-      - "11434:11434"
-#    deploy:
-#      resources:
-#        reservations:
-#          devices:
-#            - driver: nvidia
-#              count: 1
-#              capabilities: [ gpu ]
-    networks:
-      - portainer
-
-  ollamaui:
-    container_name: ollamaui
-    image: ghcr.io/ollama-webui/ollama-webui:main
-    restart: unless-stopped # possible values are: "no", always", "on-failure", "unless-stopped"
-    volumes:
-      - /data/ollamaui:/app/backend/data
-    ports:
-      - "3010:8080"
-    environment:
-      - OLLAMA_API_BASE_URL=http://192.168.1.151:11434/api
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    networks:
-      - portainer
-
 networks:
   portainer:
     name: portainer
