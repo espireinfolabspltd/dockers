@@ -10,7 +10,7 @@ services:
   react-apim:
     image: deebendu/react-apim:latest
     container_name: react-apim
-    restart: on-failure
+    restart: unless-stopped
     ports:
       - "8000:8000"
     volumes:

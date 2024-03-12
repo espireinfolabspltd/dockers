@@ -21,7 +21,7 @@ services:
   redis_insight:
     image: redislabs/redisinsight:latest
     container_name: redis_insight
-    restart: always
+    restart: unless-stopped
     ports:
       - 8001:8001
     volumes:
