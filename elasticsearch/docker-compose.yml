@@ -3,7 +3,7 @@ services:
   elasticsearch:
     container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
-    restart: always
+    restart: unless-stopped
     environment:
       - xpack.security.enabled=true
       - ELASTIC_USERNAME=elastic
@@ -35,6 +35,7 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.11.1
     container_name: kibana
+    restart: unless-stopped
     ports:
       - '5601:5601'
     environment:

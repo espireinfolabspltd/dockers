@@ -9,7 +9,7 @@ services:
     container_name: postgres
     hostname: postgres
     image: postgres:14.1-alpine
-    restart: always
+    restart: unless-stopped
     ports:
       - '5432:5432'
     volumes:
@@ -25,7 +25,7 @@ services:
     container_name: pgadmin4
     hostname: pgadmin4
     image: dpage/pgadmin4
-    restart: always
+    restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: deebendu.kumar@espire.com
       PGADMIN_DEFAULT_PASSWORD: Reset@123
