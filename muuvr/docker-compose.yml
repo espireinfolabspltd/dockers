@@ -10,7 +10,7 @@ services:
   muuvr:
     image: deebendu/muuvr:latest
     container_name: muuvr
-    restart: on-failure
+    restart: unless-stopped
     ports:
       - "8080:8080"
     volumes:
@@ -23,7 +23,7 @@ services:
   react-muuvr:
     image: deebendu/react-muuvr:latest
     container_name: react-muuvr
-    restart: on-failure
+    restart: unless-stopped
     ports:
       - "8001:8001"
     volumes:

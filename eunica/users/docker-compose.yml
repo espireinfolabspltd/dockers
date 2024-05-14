@@ -10,7 +10,7 @@ services:
   eunicausers:
     image: espiredeebendu/eunica-users:latest
     container_name: eunicausers
-    restart: on-failure
+    restart: unless-stopped
     ports:
       - "8443:8443"
     volumes:

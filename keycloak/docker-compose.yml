@@ -10,6 +10,7 @@ services:
   mariadb:
     image: library/mariadb:10
     container_name: mariadb
+    restart: unless-stopped
     volumes:
       - ${DATA}/mysql:/var/lib/mysql
     ports:

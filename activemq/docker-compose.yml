@@ -10,7 +10,7 @@ services:
   activemq:
     image: zesticio/activemq:5.15.12
     container_name: activemq
-    restart: always
+    restart: unless-stopped
     ports:
       - "8161:8161"
       - "61616:61616"

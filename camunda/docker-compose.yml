@@ -9,6 +9,7 @@ services:
   camunda:
     image: camunda/camunda-bpm-platform
     container_name: camunda
+    restart: unless-stopped
     hostname: platform
     ports:
       - "8084:8080"
