@@ -1,0 +1,25 @@
+#------------------------------------------------------------------------------
+# Author: Deebendu Kumar
+# Created: 17-10-2023
+# Copyright 2023 by Espire Infolabs
+#------------------------------------------------------------------------------
+version: '3'
+#all port number should be exposed appending 9
+services:
+  kafka:
+    image: 'bitnami/kafka:3.3.1'
+    hostname: kafka
+    container_name: kafka
+    volumes:
+      - ${DATA}/config:/var/lib/kafka/data
+    user: root
+    ports:
+      - '9092:9092'
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    networks:
+      - portainer
+networks:
+  portainer:
+    name: portainer
+    external: true
