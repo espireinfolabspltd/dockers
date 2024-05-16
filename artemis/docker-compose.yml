@@ -18,7 +18,7 @@ services:
       ANONYMOUS_LOGIN: 'false'
     ports:
       - "8161:8161"
-      - "61611:61616"
+      - "61616:61616"
     volumes:
       - ${DATA}/data/artemis/artemis-instance-01:/opt/apache-activemq-5.15.12/data
     networks:
