@@ -1,0 +1,30 @@
+#------------------------------------------------------------------------------
+# Author: Deebendu Kumar
+# Created: 17-10-2023
+# Copyright 2023 by Espire Infolabs
+#------------------------------------------------------------------------------
+version: '3'
+#all port number should be exposed appending 9
+services:
+
+  artemis:
+    image: zesticio/apache-artemis-2.33.0
+    hostname: artemis
+    container_name: artemis
+    restart: unless-stopped
+    environment:
+      ARTEMIS_USER: admin
+      ARTEMIS_PASSWORD: admin
+      ANONYMOUS_LOGIN: 'false'
+    ports:
+      - "8161:8161"
+      - "61616:61616"
+    volumes:
+      - ${DATA}/data/artemis/artemis-instance-01:/opt/apache-activemq-5.15.12/data
+    networks:
+      - portainer
+
+networks:
+  portainer:
+    name: portainer
+    external: true
