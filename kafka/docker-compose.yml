@@ -24,8 +24,9 @@ services:
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      - KAFKA_CFG_LOG_DIRS=/var/lib/kafka/data  # Ensure log directory is correctly set
-      - ALLOW_PLAINTEXT_LISTENER=yes  # Allow plaintext listener
+      - KAFKA_CFG_LOG_DIRS=/var/lib/kafka/data
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_KRAFT_CLUSTER_ID=5r7weUFBTeuDCSvnoHfkZw
     networks:
       - portainer
 
