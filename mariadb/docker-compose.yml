@@ -1,0 +1,44 @@
+#------------------------------------------------------------------------------
+# Author: Deebendu Kumar
+# Created: 17-10-2023
+# Copyright 2023 by Espire Infolabs
+#------------------------------------------------------------------------------
+version: '3.7'
+services:
+  mariadb:
+    container_name: mariadb
+    hostname: mariadb
+    image: mariadb:10.5
+    restart: unless-stopped
+    ports:
+      - '3306:3306'
+    volumes:
+      - ${DATA}/data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${PASSWORD}
+      - MYSQL_USER=${USERNAME}
+      - MYSQL_PASSWORD=${PASSWORD}
+      - MYSQL_DATABASE=${DATABASE}
+    networks:
+      - portainer
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    ports:
+      - '8080:80'
+    environment:
+      - PMA_HOST=mariadb
+      - PMA_USER=${USERNAME}
+      - PMA_PASSWORD=${PASSWORD}
+      - PMA_PORT=3306
+    depends_on:
+      - mariadb
+    networks:
+      - portainer
+
+networks:
+  portainer:
+    name: portainer
+    external: true
