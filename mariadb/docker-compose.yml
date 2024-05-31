@@ -19,6 +19,7 @@ services:
       - MYSQL_USER=${USERNAME}
       - MYSQL_PASSWORD=${PASSWORD}
       - MYSQL_DATABASE=${DATABASE}
+      - MARIADB_AUTHENTICATION_PLUGIN=mysql_native_password
     networks:
       - portainer
 
